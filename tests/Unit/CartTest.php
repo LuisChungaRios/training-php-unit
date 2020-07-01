@@ -10,6 +10,18 @@ use PHPUnit\Framework\TestCase;
 
 class CartTest extends TestCase
 {
+
+
+    public static function setUpBeforeClass(): void
+    {
+        echo "init class \n";
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        echo "\n after class \n";
+    }
+
     protected function setUp(): void
     {
         $this->cart = new Cart();
@@ -17,7 +29,7 @@ class CartTest extends TestCase
 
     protected function tearDown(): void
     {
-        echo "tearDown";
+        //echo "tearDown";
     }
 
     public function testItCreateCart()
@@ -67,5 +79,35 @@ class CartTest extends TestCase
         $this->cart->removeItem($itemCart->id);
 
         $this->assertTrue($this->cart->isEmpty());
+    }
+
+
+    /** 
+     * @test
+     */
+
+    public function incompleteTest()
+    {
+        $this->markTestIncomplete();
+    }
+
+    /**
+     * @test
+     */
+
+    public function skippTest()
+    {
+        if (true) {
+            $this->markTestSkipped("skip");
+        }
+    }
+
+
+    /**
+     * @doesNotPerformAssertions
+     */
+
+    public function testEmpty()
+    {
     }
 }

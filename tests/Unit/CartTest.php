@@ -15,6 +15,11 @@ class CartTest extends TestCase
         $this->cart = new Cart();
     }
 
+    protected function tearDown(): void
+    {
+        echo "tearDown";
+    }
+
     public function testItCreateCart()
     {
         $itemCart = createItemCart("usb", 10);
@@ -25,13 +30,12 @@ class CartTest extends TestCase
         $this->cart->add($itemCart);
 
         $this->assertEquals(1, $this->cart->count());
-
     }
 
     public function testItCreateMultipleCarts()
     {
         $carts = [];
-        for ($i = 0; $i < 5 ; $i++) {
+        for ($i = 0; $i < 5; $i++) {
 
             $itemCart = createItemCart("usb", 10);
             array_push($carts, $itemCart);
@@ -44,7 +48,6 @@ class CartTest extends TestCase
         $this->cart->addItems($carts);
 
         $this->assertEquals(count($carts), $this->cart->count());
-
     }
 
     public function testItEmpty()
@@ -64,6 +67,5 @@ class CartTest extends TestCase
         $this->cart->removeItem($itemCart->id);
 
         $this->assertTrue($this->cart->isEmpty());
-
     }
 }
